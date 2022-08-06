@@ -21,22 +21,24 @@ export default class PokemonList extends Component {
 
     render(){
         return (
-                <React.Fragment>
+                <div>
                     {this.state.pokemon ? (
                             <div className = "row">
                                 {this.state.pokemon.map(pokemon => (
                                     <PokemonCards 
                                     key = {pokemon.name}
                                     name = {pokemon.name}
+                                    url={pokemon.url}
                                     />
                                 ))}
+
                             </div>
                         ) : (
                             <h1>Loading Pokemon</h1>
                         )
                     }
 
-                </React.Fragment>
+                </div>
 
         )
     }

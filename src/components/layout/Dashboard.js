@@ -8,7 +8,6 @@ export default class Dashboard extends Component {
                 <div className="col">
                     <PokemonList />
                 </div>
-                
             </div>
         )
     }

@@ -6,6 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 import Navbar from "./components/layout/Navbar"
 import Dashboard from "./components/layout/Dashboard";
+
+
 class App extends Component{
 render(){
   return(
