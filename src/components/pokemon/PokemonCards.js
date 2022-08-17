@@ -1,57 +1,87 @@
-import { __esModule } from '@testing-library/jest-dom/dist/matchers';
-import React, { Component } from 'react'
+import React from 'react'
+import { makeStyles } from "@mui/material/styles"
+import Card from "@mui/material/Card"
+import CardActions from "@mui/material/CardActions"
+import CardContent from "@mui/material/CardContent"
+import Typography from '@mui/material/Typography'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Switch from '@mui/material/Switch'
 
+import { updatePokemonCapturedStatus } from "../graphQL"
 
-import styled from 'styled-components';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minWidth: 275,
+  },
+  pokemonIdNumber: {
+    fontSize: 14,
+    marginBottom: theme.spacing(4),
+  },
+  avatar: {
+    height: theme.spacing(16),
+    borderRadius: 0,
+    marginBottom: theme.spacing(1),
+  },
+  cardActions: {
+    justifyContent: 'center',
+  },
+}))
 
+export function PokemonCards({ pokemon, fetchPokedexData }) {
+  const classes = useStyles()
 
-const Sprite = styled.img`
-width:5em;
-height: 5em;
-`
+  const handleCapturedChange = async () => {
+    const { errors } = await updatePokemonCapturedStatus(
+      pokemon.id,
+      !pokemon.captured
+    )
 
-
-
-export default class PokemonCards extends Component {
-    state = {
-        name: '',
-        imageUrl: '',
-        pokemonIndex: ''
-    };
-
-    componentDidMount(){
-        const {name, url} = this.props;
-
-        const pokemonIndex = url.split('/')[url.split('/').length - 2];
-        // const imageUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${pokemonIndex}.png?raw=true`
-        const imageUrl = `https://projectpokemon.org/images/normal-sprite/${name}.gif`;
-    
-        this.setState({
-            name, 
-            imageUrl,
-            pokemonIndex
-        })
+    if (errors) {
+      console.error(errors)
     }
 
-    
-    render() {
-        
+    // Re-fetching all the data to make the top-level app aware of the data change.
+    // This was especially important in getting it to remove a Pokemon from the UI
+    // when the Captured filter was selected and then a previously captured Pokemon
+    // was toggled to no longer be captured.
+    fetchPokedexData()
+  }
 
-        return(
-            <div className='col-md-3 col-sm-6 mb-5'>
-                <div className='card'>
-                        <h5 className='card-header'>{this.state.pokemonIndex}</h5>
-                        <Sprite className="card-img-top rounded mx-auto mt-2"
-                        src={this.state.imageUrl}>
-                        </Sprite>
-                        <div className='card-body mx-auto'>
-                        <h6 className='card-title '>
-                            {this.state.name}
-                        </h6>
-                        </div>
-                   
-                </div>
-            </div>
-        )
-    }
+  return (
+    <Card className={classes.root} variant="outlined">
+      <CardContent>
+        <Typography
+          className={classes.pokemonIdNumber}
+          color="textSecondary"
+          gutterBottom
+        >
+          {pokemon.id}
+        </Typography>
+        <img
+          alt={pokemon.name}
+          src={pokemon.imgUrl}
+          className={classes.avatar}
+        />
+        <Typography variant="h5" component="h2">
+          {pokemon.name}
+        </Typography>
+        <Typography color="textSecondary">
+          {pokemon.pokemonTypes.join(', ')}
+        </Typography>
+      </CardContent>
+      <CardActions className={classes.cardActions}>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={pokemon.captured}
+              onChange={handleCapturedChange}
+              name="captured"
+              color="primary"
+            />
+          }
+          label="Captured"
+        />
+      </CardActions>
+    </Card>
+  )
 }

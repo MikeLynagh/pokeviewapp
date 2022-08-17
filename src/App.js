@@ -1,26 +1,39 @@
 import React, { Component } from "react";
+import Header from "./component/Header";
+import { Route, Routes } from "react-router-dom";
+import Home from "./component/Home";
+import AddBook from "./component/AddBook";
+import Books from "./component/Book/Books";
+import About from "./component/About";
 
-import "./App.css"
+function App(){
+    return(
+        <React.Fragment>
+            <header>
+            <Header />
+            </header>
+            <main>
+                <Routes>
+                    <Route path="/" element={<Home />} exact />
+                    <Route path="/add" element={<AddBook />} exact />
+                    <Route path="/books" element={<Books />} exact />
+                    <Route path="/about" element={<About />} exact />
 
-import "bootstrap/dist/css/bootstrap.min.css"
+                </Routes>
 
-import Navbar from "./components/layout/Navbar"
-import Dashboard from "./components/layout/Dashboard";
-
-
-class App extends Component{
-render(){
-  return(
-    <div className="App">
-      <Navbar />
-      <div className="container">
-        <Dashboard />
-      </div>
-
-    </div>
-  )
+            </main>
+        </React.Fragment>
+    )
 }
-}
 
 
-export default App;
+// class App extends Component {
+//     render(){
+//         return <div>
+//             Time to get these connected 
+//             <Header />
+//         </div>
+//     }
+// }
+
+export default App

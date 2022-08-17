@@ -1,45 +1,42 @@
-import React, { Component } from "react";
+import React from 'react'
+import { makeStyles } from "@mui/material/styles"
 
+import Grid from "@mui/material/Grid"
+import Typography from '@mui/material/Typography'
 
-import PokemonCards from "./PokemonCards";
+import { PokemonCards } from './PokemonCards'
 
-//import axios for connecting to backend
-import axios from 'axios';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  noResultsContainer: {
+    textAlign: 'center',
+  },
+  noResults: {
+    color: '#FFF',
+    fontSize: 24,
+    textTransform: 'uppercase',
+    marginTop: theme.spacing(6),
+  },
+}))
 
-export default class PokemonList extends Component {
-    // import the pokemon api to state 
-    state = {
-        url: 'https://pokeapi.co/api/v2/pokemon/',
-        pokemon: null
-    };
+export function PokemonCardsList({ pokedexData, fetchPokedexData }) {
+  const classes = useStyles()
 
-    async componentDidMount(){
-        const res = await axios.get(this.state.url);
-        this.setState({pokemon: res.data['results']});
-
-    }
-
-    render(){
-        return (
-                <div>
-                    {this.state.pokemon ? (
-                            <div className = "row">
-                                {this.state.pokemon.map(pokemon => (
-                                    <PokemonCards 
-                                    key = {pokemon.name}
-                                    name = {pokemon.name}
-                                    url={pokemon.url}
-                                    />
-                                ))}
-
-                            </div>
-                        ) : (
-                            <h1>Loading Pokemon</h1>
-                        )
-                    }
-
-                </div>
-
-        )
-    }
+  return pokedexData.length > 0 ? (
+    <Grid container className={classes.root} spacing={2}>
+      {pokedexData.map((pokemon) => (
+        <Grid key={pokemon.name} item xs={12} sm={6} md={4} lg={3}>
+          <PokemonCards pokemon={pokemon} fetchPokedexData={fetchPokedexData} />
+        </Grid>
+      ))}
+    </Grid>
+  ) : (
+    <div className={classes.noResultsContainer}>
+      <Typography className={classes.noResults}>
+        No results. Please try a different filter value.
+      </Typography>
+    </div>
+  )
 }
