@@ -5,7 +5,7 @@ import Book from "./Book";
 const URL = "http://localhost:5000/books";
 
 const fetchHandler = async () => {
-    return await axios.get(URL).then((res)=>res.data)
+    return await axios.get(URL).then((res) => res.data)
 }
 
 const Books = () => {
@@ -17,13 +17,14 @@ const Books = () => {
 
     return <div>
             <ul>
-                {books && books.map((book,i) => {
+                {books && 
+                 books.map((book,i) => (
                     <div key={i}>
-                        <Book book={book} />
-                        
-
+                        <Book book={book}/>
                     </div>
-                })}
+                 )
+                    
+                )}
             </ul>
     </div>
 }
