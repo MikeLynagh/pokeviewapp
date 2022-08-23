@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Book from "./Book";
+import Pokemon from "./Pokemon";
+import "./styledPokemon.css"
 
 const URL = "http://localhost:5000/books";
 
@@ -13,15 +14,15 @@ const Books = () => {
     useEffect(() => {
         fetchHandler().then((data) => setBooks(data.books))
     }, []);
-    console.log(books)
+    // console.log(books)
 
     return <div>
             <ul>
                 {books && 
                  books.map((book,i) => (
-                    <div key={i}>
-                        <Book book={book}/>
-                    </div>
+                    <li key={i}>
+                        <Pokemon book={book}/>
+                    </li>
                  )
                     
                 )}
