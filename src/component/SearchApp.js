@@ -35,27 +35,59 @@ const SearchApp = () => {
 
     }
 
+    console.log(filteredData.length)
+
+
+    
+      
+  
     
 
     return <div className="App">
-      <div style={{ margin: '40 auto', marginTop: '10%' }}>
-        <label>Search:</label>
+      <div>
+        <label>Search by Pokemon Name</label>
         <input type="text" onChange={(event) =>handleSearch(event)} />
+        <ShowResults filteredData = {filteredData} />
       </div>
+     
 
-
-            <ul>
-               
-                  {filteredData.map((item, i) => (
-                    <li key={i}>
-                      <h2>{item.name}</h2>
-                      <img src={item.img} />
-                    </li>
-                 )
-                    
-                )}
-            </ul>
     </div>
 }
+
+const ShowResults = ({filteredData}) => {
+  if (filteredData.length > 1){
+    return (
+      <ul>
+      {filteredData.map((item, i) => (
+           <li key={i}>
+             <h2>{item.name}</h2>
+             <img src={item.img} />
+           </li>
+        )
+           
+       )}
+        </ul>
+
+    )
+  } else 
+    return (
+      <ul>
+      {filteredData.map((item, i) => (
+           <li key={i}>
+             <h2>NAME: {item.name}</h2>
+             <img src={item.img} />
+             <h3>POKEMON NUMBER: {item.num}</h3>
+             <h3>HEIGHT: {item.height}</h3>
+             <h3>WEIGHT: {item.weight}</h3>
+             <h3>TYPE: {item.type}</h3>
+
+           </li>
+        )
+           
+       )}
+        </ul>
+    )
+  } 
+
 
 export default SearchApp
