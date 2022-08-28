@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./searchbar.css"
 
 const URL = "http://localhost:5000/books";
 
@@ -37,36 +38,32 @@ const SearchApp = () => {
 
     console.log(filteredData.length)
 
-
-    
-      
-  
-    
-
-    return <div className="App">
-      <div>
-        <label>Search by Pokemon Name</label>
-        <input type="text" onChange={(event) =>handleSearch(event)} />
-        <ShowResults filteredData = {filteredData} />
+    return <div class="container">
+      <div class="search-box">
+        <img class="search-icon" src="https://www.freepnglogos.com/uploads/search-png/search-png-box-image-css-style-maker-design-web-1.png" />
+         <input class="search" placeholder="Search by Pokemon name e.g. Charmander, Pikachu" type="text" onChange={(event) =>handleSearch(event)} />
       </div>
-     
-
+      <ShowResults filteredData = {filteredData} />
     </div>
 }
 
 const ShowResults = ({filteredData}) => {
   if (filteredData.length > 1){
     return (
+      <div className="display-background">
       <ul>
       {filteredData.map((item, i) => (
            <li key={i}>
-             <h2>{item.name}</h2>
+            <h1> # {item.num}</h1>
              <img src={item.img} />
+             <h2>{item.name}</h2>
+
            </li>
         )
            
        )}
         </ul>
+        </div>
 
     )
   } else 
