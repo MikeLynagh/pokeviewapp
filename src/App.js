@@ -24,7 +24,6 @@ function App(){
                 <Routes>
                     <Route path="/" element={<Home />} exact />
                     <Route path="/search" element={<SearchApp />} exact />
-                    <Route path="/books" element={<Books />} exact />
                     <Route path="/about" element={<About />} exact />
 
                 </Routes>

@@ -8,9 +8,6 @@ const Pokemon = (props) => {
         <h1>{name}</h1>
         <h2>{_id}</h2>
         <img src={img}></img>
-        {/* <h2>{height}</h2>
-        <h2>{weight}</h2>
-        <h2>{type}</h2> */}
         </div>
 }
 

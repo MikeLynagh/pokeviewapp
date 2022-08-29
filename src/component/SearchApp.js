@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./searchbar.css"
+import "../styles/pokemon.css"
 
 const URL = "http://localhost:5000/books";
 
@@ -43,22 +44,26 @@ const SearchApp = () => {
         <img class="search-icon" src="https://www.freepnglogos.com/uploads/search-png/search-png-box-image-css-style-maker-design-web-1.png" />
          <input class="search" placeholder="Search by Pokemon name e.g. Charmander, Pikachu" type="text" onChange={(event) =>handleSearch(event)} />
       </div>
+      <div>
       <ShowResults filteredData = {filteredData} />
+      </div>
     </div>
 }
 
 const ShowResults = ({filteredData}) => {
   if (filteredData.length > 1){
     return (
-      <div className="display-background">
+      <div class="all-pokemon">
       <ul>
       {filteredData.map((item, i) => (
+        <div class="each-poke-card">
            <li key={i}>
             <h1> # {item.num}</h1>
              <img src={item.img} />
              <h2>{item.name}</h2>
 
            </li>
+           </div>
         )
            
        )}
@@ -68,12 +73,13 @@ const ShowResults = ({filteredData}) => {
     )
   } else 
     return (
+      <div class="display-background">
       <ul>
       {filteredData.map((item, i) => (
            <li key={i}>
-             <h2>NAME: {item.name}</h2>
+             <h2>NUMBER: {item.num}</h2>
              <img src={item.img} />
-             <h3>POKEMON NUMBER: {item.num}</h3>
+             <h3>NAME: {item.name}</h3>
              <h3>HEIGHT: {item.height}</h3>
              <h3>WEIGHT: {item.weight}</h3>
              <h3>TYPE: {item.type}</h3>
@@ -83,6 +89,7 @@ const ShowResults = ({filteredData}) => {
            
        )}
         </ul>
+        </div>
     )
   } 
 
