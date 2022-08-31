@@ -12,6 +12,10 @@ import useToken from "./component/Login/useToken";
 function App(){
     const { token, setToken } = useToken()
 
+    // a token must be return otherwise, the web application will display the login page. 
+
+
+
     if(!token){
         return <Login setToken={setToken} />
     }
@@ -22,7 +26,7 @@ function App(){
             </header>
             <main>
                 <Routes>
-                    <Route path="/" element={<Home />} exact />
+                    <Route path="/" element={<SearchApp />} exact />
                     <Route path="/search" element={<SearchApp />} exact />
                     <Route path="/about" element={<About />} exact />
 

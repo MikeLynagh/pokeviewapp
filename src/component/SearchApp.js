@@ -4,7 +4,11 @@ import axios from "axios";
 import "./searchbar.css"
 import "../styles/pokemon.css"
 
+// URL is the link for the backend database data imported from MongoDB
+
 const URL = "http://localhost:5000/books";
+
+// fetchHandler makes a request to  "http://localhost:5000/books" to get data 
 
 const fetchHandler = async () => {
     return await axios.get(URL).then((res) => res.data)
@@ -14,11 +18,15 @@ const SearchApp = () => {
     const [books, setBooks] = useState([]);
     const [filteredData, setFilteredData] = useState(books);
 
+    // useEffect fetches data from the URL  "http://localhost:5000/books"
+
     useEffect(() => {
       fetchHandler().then(data => {
         setBooks(data.books)
         setFilteredData(data.books)
       })
+
+      //validation if no data returned
       .catch(error => {
         console.log("error getting data: " + error)
       })
@@ -49,6 +57,12 @@ const SearchApp = () => {
       </div>
     </div>
 }
+
+// ShowResults is an arrow function that filters over the data 
+// if there are more than one result for the filteredData, 
+//ShowResults will display all 150 Pokemon including their number, image link and name.
+//If the filteredData equals 1 result, then the data returned for that 
+//single result will be number, image, name, height, weight, type 
 
 const ShowResults = ({filteredData}) => {
   if (filteredData.length > 1){

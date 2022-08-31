@@ -23,6 +23,10 @@ body {
     height: 100px;
 }
 
+label {
+    color: red;
+}
+
 
 
 

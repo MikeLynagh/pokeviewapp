@@ -1,5 +1,7 @@
 import React from "react";
 
+// This returns information about the frameworks used to create this application
+
 const About = () => {
     return <div>
         
