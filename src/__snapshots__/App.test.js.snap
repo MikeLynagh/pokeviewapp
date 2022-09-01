@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="wrapper"
+  >
+    <div
+      class="logo"
+    >
+      <img
+        alt="Pokemon Go logo png"
+        src="https://www.freepnglogos.com/uploads/pok-mon-go-logo-png-30.png"
+      />
+    </div>
+    <div
+      class="text-center mt-4 name"
+    >
+      Pokedex
+    </div>
+    <h1>
+      Please Log In
+    </h1>
+    <form
+      class="p-3 mt-3"
+    >
+      <div
+        class="form-field d-flex align-items-center"
+      >
+        <span
+          class="far fa-user"
+        />
+        <input
+          id="userName"
+          name="userName"
+          placeholder="Username"
+          type="text"
+        />
+      </div>
+      <div
+        class="form-field d-flex align-items-center"
+      >
+        <span
+          class="fas fa-key"
+        />
+        <input
+          id="pwd"
+          name="password"
+          placeholder="Password"
+          type="password"
+        />
+      </div>
+      <div>
+        <button
+          class="btn mt-3"
+          type="submit"
+        >
+          Login
+        </button>
+      </div>
+      <div>
+        <p>
+          You must use the username: admin
+        </p>
+        <p>
+          You must use the password: admin
+        </p>
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;

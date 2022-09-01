@@ -3,7 +3,7 @@ import React from "react";
 // This returns information about the frameworks used to create this application
 
 const About = () => {
-    return <div>
+    return <div data-testid="About">
         
             <p> This is a web app that displays the original 150 Pokemon.</p>
             <p>The front end was built using React JS.</p>

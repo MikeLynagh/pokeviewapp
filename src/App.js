@@ -1,7 +1,6 @@
 import React, { Component, useState } from "react";
 import Header from "./component/Header";
 import { Route, Routes, BrowserRouter, Switch } from "react-router-dom";
-import Home from "./component/Home";
 import SearchApp from "./component/SearchApp";
 import Books from "./component/Pokedex/PokemonList";
 import About from "./component/About";
@@ -27,7 +26,6 @@ function App(){
             <main>
                 <Routes>
                     <Route path="/" element={<SearchApp />} exact />
-                    <Route path="/search" element={<SearchApp />} exact />
                     <Route path="/about" element={<About />} exact />
 
                 </Routes>

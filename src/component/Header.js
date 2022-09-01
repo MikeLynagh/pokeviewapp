@@ -17,7 +17,6 @@ const Header = () => {
                     textColor="inherit" indicatorColor="secondary" value={value} onChange={(e,val)=>setValue(val)}>
                         {/* the code below will act as hyperlinks to search and about pages  */}
                         
-                    <Tab LinkComponent={NavLink} to="/search" label="Search" />
                     <Tab LinkComponent={NavLink} to="/about" label="About" />
 
                 </Tabs>
