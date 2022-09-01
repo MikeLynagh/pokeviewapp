@@ -6,6 +6,9 @@ const cors = require('cors')
 const { default: axios } = require('axios')
 const app = express()
 
+// code taken from https://www.youtube.com/watch?v=5Y5QKfxTErU
+// I modelled this code from the above youtub tutorial
+
 
 //middlewares
 app.use(express.json())
