@@ -6,7 +6,7 @@ import "../styles/pokemon.css"
 
 // URL is the link for the backend database data imported from MongoDB
 
-const URL = "http://localhost:5000/books";
+const URL = "http://localhost:5000/";
 
 // fetchHandler makes a request to  "http://localhost:5000/books" to get data 
 
@@ -39,7 +39,7 @@ const SearchApp = () => {
       let result = []
       console.log(value)
       result = books.filter((item) => {
-        return item.name.search(value) != -1;
+        return item.name.search(value) !== -1;
       })
       setFilteredData(result)
 
@@ -65,6 +65,7 @@ const SearchApp = () => {
 //single result will be number, image, name, height, weight, type 
 
 const ShowResults = ({filteredData}) => {
+
   if (filteredData.length > 1){
     return (
       <div class="all-pokemon">
@@ -84,6 +85,13 @@ const ShowResults = ({filteredData}) => {
         </ul>
         </div>
 
+    )
+  } else if (filteredData.length === 0){
+    return (
+      <div>
+        <h2>No Pokemon matches that name </h2>
+        <h2>Please try to search a different Pokemon name</h2>
+        </div>
     )
   } else 
     return (

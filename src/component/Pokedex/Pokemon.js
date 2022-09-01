@@ -2,13 +2,11 @@ import React from "react";
 import "./styledPokemon.css"
 
 
+// Pokemon is used to take in props from the backend database
+
 const Pokemon = (props) => {
     const {_id, num, name, img, type, height, weight} = props.book
-    return <div className="poke-card">
-        <h1>{name}</h1>
-        <h2>{_id}</h2>
-        <img src={img}></img>
-        </div>
+    
 }
 
 export default Pokemon

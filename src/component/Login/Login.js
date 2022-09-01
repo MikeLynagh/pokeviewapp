@@ -37,7 +37,6 @@ export default function Login({ setToken }) {
         //admin for username and admin for password
 
 
-        // while (username == "admin" && password == "admin"){
 
         if (username == "admin" && password == "admin" ){
           const token = await loginUser({

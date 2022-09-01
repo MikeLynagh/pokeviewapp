@@ -7,6 +7,7 @@ import { useState } from "react"
 //create a function called useToken 
 export default function useToken(){
 
+    // getToken is a function that gets and sets the userToken to from and to localStorage
     const getToken = () => {
         const tokenString = localStorage.getItem("token")
         const userToken = JSON.parse(tokenString)
